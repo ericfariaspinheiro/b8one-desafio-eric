@@ -5,6 +5,7 @@ export default function ProductCard({ image, name, price }) {
             className="product-card__image"
             src={image}
             alt={name}
+            loading="lazy"
         />
 
         <h2 className="product-card__name">{name}</h2>
@@ -16,7 +17,10 @@ export default function ProductCard({ image, name, price }) {
             })}
         </p>
 
-        <button className="product-card__button">
+        <button 
+            className="product-card__button"
+            aria-label={`Comprar ${name}`}
+        >
             Comprar
         </button>
     </article>
