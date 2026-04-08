@@ -1,33 +1,33 @@
 "use client";
 
 import ReactPaginate from "react-paginate";
-import { useRouter } from "next/navigation";
 
-export default function Pagination({ currentPage, totalPages }) {
+export default function Pagination({
+  currentPage,
+  totalPages,
+  onPageChange
+}) {
 
-  const router = useRouter();
-
-  const handlePageClick = (event) => {
-
-    const page = event.selected + 1;
-
-    router.push(`/ofertas?page=${page}`);
-
-  };
+  if (!totalPages) return null;
 
   return (
     <ReactPaginate
+
       pageCount={totalPages}
+
       forcePage={currentPage - 1}
 
-      onPageChange={handlePageClick}
+      onPageChange={(event) =>
+        onPageChange(event.selected + 1)
+      }
 
-      previousLabel={"←"}
-      nextLabel={"→"}
+      previousLabel="←"
+      nextLabel="→"
 
       containerClassName="pagination"
       pageClassName="pagination__page"
       activeClassName="pagination__page--active"
+
     />
   );
 }
