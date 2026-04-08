@@ -1,3 +1,5 @@
+export const dynamic = "force-dynamic";
+
 import Banner from "@/components/Banner";
 import ProductGrid from "@/components/ProductGrid";
 import Pagination from "@/components/Pagination";
@@ -6,24 +8,17 @@ const PRODUCTS_PER_PAGE = 6;
 
 async function getProducts() {
   try {
-
     const response = await fetch("https://fakestoreapi.com/products");
 
-    if (!response.ok) {
-      console.error("API response error:", response.status);
-      return [];
-    }
+    if (!response.ok) throw new Error("API error");
 
     const data = await response.json();
 
     return Array.isArray(data) ? data : [];
 
   } catch (error) {
-
     console.error("Fetch failed:", error);
-
     return [];
-
   }
 }
 
