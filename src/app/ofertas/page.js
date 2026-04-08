@@ -8,9 +8,15 @@ const PRODUCTS_PER_PAGE = 6;
 
 async function getProducts() {
   try {
-    const response = await fetch("https://fakestoreapi.com/products");
+    const response = await fetch(
+      "https://fakestoreapi.com/products",
+      { cache: "no-store" }
+    );
 
-    if (!response.ok) throw new Error("API error");
+    if (!response.ok) {
+      console.error("API error:", response.status);
+      return [];
+    }
 
     const data = await response.json();
 
@@ -26,7 +32,7 @@ export default async function OfertasPage({ searchParams }) {
 
   const params = await searchParams;
 
-  const page = Number(params.page) || 1;
+  const page = Number(params?.page) || 1;
 
   const products = await getProducts();
 

@@ -22,8 +22,8 @@ export default function Pagination({ currentPage, totalPages }) {
 
       onPageChange={handlePageClick}
 
-      previousLabel="←"
-      nextLabel="→"
+      previousLabel={"←"}
+      nextLabel={"→"}
 
       containerClassName="pagination"
       pageClassName="pagination__page"

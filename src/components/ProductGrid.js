@@ -1,8 +1,10 @@
-"use client";
-
 import ProductCard from "@/components/ProductCard";
 
-export default function ProductGrid({ products }) {
+export default function ProductGrid({ products = [] }) {
+
+  if (!products.length) {
+    return <p>Nenhum produto encontrado</p>;
+  }
 
   return (
     <div className="ofertas__grid">
