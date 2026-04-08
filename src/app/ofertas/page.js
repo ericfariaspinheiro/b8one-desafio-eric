@@ -7,12 +7,13 @@ export default function OfertasPage() {
 
       <Banner />
 
-      <h1 className="ofertas__title">
-        Ofertas da Semana
-      </h1>
+      <div className="ofertas__content">
+        <h1 className="ofertas__title">
+          Ofertas da Semana
+        </h1>
 
-      <ProductsSection />
-
+        <ProductsSection />
+      </div>
     </main>
   );
 }
