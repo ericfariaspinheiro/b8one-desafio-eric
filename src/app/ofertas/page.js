@@ -1,9 +1,10 @@
 import { Suspense } from "react";
-import "@/styles/ofertas.scss";
 
 import Banner from "@/components/Banner";
 import ProductGrid from "@/components/ProductGrid";
 import ProductGridSkeleton from "@/components/ProductGridSkeleton";
+
+import "@/styles/ofertas.scss";
 
 export default function OfertasPage() {
   return (
