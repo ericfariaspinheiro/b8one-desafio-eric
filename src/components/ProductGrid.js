@@ -2,16 +2,22 @@ import ProductCard from "@/components/ProductCard";
 
 async function getProducts() {
   try {
-    const response = await fetch("https://fakestoreapi.com/products", {
-      next: { revalidate: 60 }
-    });
+    const response = await fetch(
+      "https://fakestoreapi.com/products",
+      {
+        cache: "no-store"
+      }
+    );
 
-    if (!response.ok) return [];
-    
+    if (!response.ok) {
+      console.error("API error:", response.status, response.statusText);
+      return [];
+    }
+
     const data = await response.json();
     return data.slice(0, 6);
   } catch (error) {
-    console.error(error);
+    console.error("Fetch failed:", error);
     return [];
   }
 }
