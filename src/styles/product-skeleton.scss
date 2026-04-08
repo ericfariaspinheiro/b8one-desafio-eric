@@ -1,0 +1,55 @@
+.product-skeleton {
+  background: white;
+  border-radius: 8px;
+  padding: 16px;
+}
+
+.product-skeleton__image,
+.product-skeleton__name,
+.product-skeleton__price,
+.product-skeleton__button {
+  background: #e5e5e5;
+  border-radius: 4px;
+  margin-bottom: 12px;
+}
+
+.product-skeleton__image {
+  height: 180px;
+}
+
+.product-skeleton__name {
+  height: 16px;
+  width: 80%;
+}
+
+.product-skeleton__price {
+  height: 18px;
+  width: 40%;
+}
+
+.product-skeleton__button {
+  height: 36px;
+  width: 100%;
+}
+
+// Animação
+@keyframes skeleton-loading {
+  0% {
+    opacity: 0.6;
+  }
+
+  50% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0.6;
+  }
+}
+
+.product-skeleton__image,
+.product-skeleton__name,
+.product-skeleton__price,
+.product-skeleton__button {
+  animation: skeleton-loading 1.2s infinite ease-in-out;
+}
