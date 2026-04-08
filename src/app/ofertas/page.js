@@ -2,50 +2,37 @@ import "@/styles/ofertas.scss";
 import Banner from "@/components/Banner";
 import ProductCard from "@/components/ProductCard";
 
-export default function OfertasPage() {
-  return (
-    <main className="ofertas">
-      <Banner />
+async function getProducts() {
+    const response = await fetch("https://fakestoreapi.com/products");
 
-      <h1 className="ofertas__title">Ofertas da Semana</h1>
+    if (!response.ok) {
+        throw new Error("Erro ao buscar produtos");
+    }
 
-      <div className="ofertas__grid">
-        <ProductCard
-          image="https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg"
-          name="Mochila"
-          price="99.90"
-        />
+    const data = await response.json();
 
-        <ProductCard
-          image="https://fakestoreapi.com/img/71li-ujtlUL._AC_UX679_.jpg"
-          name="Camiseta"
-          price="59.90"
-        />
+    return data.slice(0, 6);
+}
 
-        <ProductCard
-          image="https://fakestoreapi.com/img/71YXzeOuslL._AC_UY879_.jpg"
-          name="Jaqueta"
-          price="199.90"
-        />
+export default async function OfertasPage() {
+    const products = await getProducts();
 
-        <ProductCard
-          image="https://fakestoreapi.com/img/61IBBVJvSDL._AC_SY879_.jpg"
-          name="Relógio"
-          price="149.90"
-        />
+    return (
+        <main className="ofertas">
+            <Banner />
 
-        <ProductCard
-          image="https://fakestoreapi.com/img/51Y5NI-I5jL._AC_UX679_.jpg"
-          name="Bolsa"
-          price="89.90"
-        />
+            <h1 className="ofertas__title">Ofertas da Semana</h1>
 
-        <ProductCard
-          image="https://fakestoreapi.com/img/71HblAHs5xL._AC_UY879_-2.jpg"
-          name="Tênis"
-          price="129.90"
-        />
-      </div>
-    </main>
-  );
+            <div className="ofertas__grid">
+                {products.map((product) => (
+                    <ProductCard
+                        key={product.id}
+                        image={product.image}
+                        name={product.title}
+                        price={product.price}
+                    />
+                ))}
+            </div>
+        </main>
+    );
 }
