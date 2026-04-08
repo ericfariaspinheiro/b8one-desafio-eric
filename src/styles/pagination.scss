@@ -1,0 +1,26 @@
+.pagination {
+
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 40px;
+
+  list-style: none;
+
+  &__page,
+  &__nav {
+
+    padding: 8px 12px;
+    border: 1px solid #ddd;
+    cursor: pointer;
+
+  }
+
+  &__page--active {
+
+    background: black;
+    color: white;
+
+  }
+
+}

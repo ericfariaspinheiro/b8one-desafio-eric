@@ -1,6 +1,8 @@
 @use "./banner.scss";
+@use "./ofertas.scss";
 @use "./product-card.scss";
 @use "./product-skeleton.scss";
+@use "./pagination.scss";
 
 body {
     background-color: lightgray;
