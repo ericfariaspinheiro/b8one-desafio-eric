@@ -1,30 +1,35 @@
+"use client";
+
+import { useEffect, useState } from "react";
+
 import ProductCard from "@/components/ProductCard";
+import ProductGridSkeleton from "@/components/ProductGridSkeleton";
 
-async function getProducts() {
-  try {
-    const response = await fetch(
-      "https://fakestoreapi.com/products",
-      {
-        cache: "no-store"
+export default function ProductGrid() {
+  const [products, setProducts] = useState(null);
+
+  useEffect(() => {
+    const loadProducts = async () => {
+      try {
+        const response = await fetch("https://fakestoreapi.com/products");
+
+        if (!response.ok) throw new Error("API error");
+
+        const data = await response.json();
+
+        setProducts(data.slice(0, 6));
+
+      } catch (error) {
+        console.error("Erro ao carregar produtos:", error);
       }
-    );
+    };
 
-    if (!response.ok) {
-      console.error("API error:", response.status, response.statusText);
-      return [];
-    }
+    loadProducts();
+  }, []);
 
-    const data = await response.json();
-    return data.slice(0, 6);
-  } catch (error) {
-    console.error("Fetch failed:", error);
-    return [];
+  if (!products) {
+    return <ProductGridSkeleton />;
   }
-}
-
-
-export default async function ProductGrid() {
-  const products = await getProducts();
 
   return (
     <div className="ofertas__grid">
