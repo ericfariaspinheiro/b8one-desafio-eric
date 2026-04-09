@@ -34,7 +34,7 @@ export default function ProductCard({ image, name, price, rating }) {
       </p>
 
       <p className="product-card__price">
-        Por: 
+        Por: {" "}
         {Number(newPrice).toLocaleString("pt-BR", {
           style: "currency",
           currency: "BRL"

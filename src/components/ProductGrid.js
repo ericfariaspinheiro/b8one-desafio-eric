@@ -6,7 +6,6 @@ export default function ProductGrid({ products = [] }) {
     return <p>Nenhum produto encontrado</p>;
   }
 
-  console.log("Renderizando ProductGrid com produtos:", products);
   return (
     <div className="ofertas__grid">
       {products.map((product) => (
