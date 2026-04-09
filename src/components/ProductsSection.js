@@ -15,26 +15,28 @@ export default function ProductsSection() {
   useEffect(() => {
 
     const loadProducts = async () => {
+        try {
+            const response = await fetch("https://fakestoreapi.com/products");
 
-      try {
+            if (!response.ok) throw new Error("API error");
 
-        const response = await fetch(
-          "https://fakestoreapi.com/products"
-        );
+            const data = await response.json();
+            setProducts(data);
 
-        if (!response.ok) throw new Error("API error");
+        } catch (error) {
+            try {
+            // Fallback 
+            const fallbackResponse = await fetch("https://dummyjson.com/products");
 
-        const data = await response.json();
+            if (!fallbackResponse.ok) throw new Error("Fallback API error");
 
-        setProducts(data);
-
-      } catch (error) {
-
-        console.error("Erro ao carregar produtos:", error);
-        setProducts([]);
-
-      }
-
+            const fallbackData = await fallbackResponse.json();
+            setProducts(fallbackData.products);
+            } catch (fallbackError) {
+                console.error("Erro no fallback também:", fallbackError);
+                setProducts([]);
+            }
+        }
     };
 
     loadProducts();

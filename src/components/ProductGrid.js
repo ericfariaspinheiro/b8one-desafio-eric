@@ -12,10 +12,10 @@ export default function ProductGrid({ products = [] }) {
       {products.map((product) => (
         <ProductCard
           key={product.id}
-          image={product.image}
+          image={product.image ? product.image : product.images[0]}
           name={product.title}
           price={product.price}
-          rating={product.rating.rate}
+          rating={product.rating.rate ? product.rating.rate : product.rating}
         />
       ))}
     </div>
